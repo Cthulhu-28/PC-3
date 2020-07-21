@@ -10,9 +10,12 @@
 </head>
 
 <body>
-    <div class="container d-flex flex-column h-100">
+    <div class="d-flex flex-column h-100">
 
-        {% include "templates/partials/navigation_public.twig" %} {% block content %}{% endblock %}
+        {% include "templates/partials/navigation_public.twig" %}
+        <div style="margin-top: 15px;" class="container"> {% block content %}{% endblock %}
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

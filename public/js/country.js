@@ -71,8 +71,8 @@ function barchart() {
         },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.3f} mm</b></td></tr>',
+            pointFormat: '<tr><td style="color:#303030;padding:0"><b>{series.name}: </b></td>' +
+                '<td style="padding:0">{point.y:.3f}</td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -104,34 +104,42 @@ function barchart() {
         },
         series: [{
             name: 'GDP',
-            data: selectIndicator(0, data)
+            data: selectIndicator(0, data),
+            color: "#cff09e"
         }, {
             name: 'Social support',
-            data: selectIndicator(1, data)
+            data: selectIndicator(1, data),
+            color: "#a8dba8"
         }, {
             name: 'Life expectancy',
-            data: selectIndicator(2, data)
+            data: selectIndicator(2, data),
+            color: "#79bd9a"
         }, {
             name: 'Freedom',
-            data: selectIndicator(3, data)
+            data: selectIndicator(3, data),
+            color: "#3b8686"
         }, {
             name: 'Generosity',
-            data: selectIndicator(4, data)
+            data: selectIndicator(4, data),
+            color: "#0b486b"
         }, {
             name: 'Corruption',
-            data: selectIndicator(5, data)
+            data: selectIndicator(5, data),
+            color: "#606060"
         }]
     });
 }
 
 function timeline() {
+    let colors = ["#79bd9a", "#3b8686", "#0b486b"];
     seriesData = [];
-    data.forEach(year => {
+    data.forEach((year, i) => {
         seriesData.push({
             x: Date.UTC(year.year, 1, 1),
             name: year.rank.toString(),
             label: year.rank.toString(),
-            description: `Score: ${year.value.toFixed(3)}`
+            description: `Score: ${year.value.toFixed(3)}`,
+            color: colors[i % colors.length]
         });
     });
     Highcharts.chart('container-4', {

@@ -2,36 +2,61 @@
 <div class="flex-grow-1 d-flex align-items-start">
     <div class="col">
         <div class="row">
-            <h3>Why do these factors matter?</h3>
+            <h3>Why do these
+                <span class="highlight">factors matter?</span>
+            </h3>
         </div>
         <div class="row">
-            <ul>
-                <li>
-                    <p>
-                        <strong>GDP:
-							</strong>is a metric that breaks down a country's economic output per person. It's the total income of the country divided by its population.</p>
-                </li>
-            </ul>
+            <p>The
+                <span class="highlight">six variables</span> explain the variation of happiness across countries. The variables are intended to illustrate important lines of correlation rather than to reflect clean causal estimates. Furthermore, taken
+                together, these
+                <span class="highlight">six variables</span> explain almost three-quarters of the variation in national annual average ladder scores among countries.
+                <small>
+						<i>Source:
+							<a href="https://worldhappiness.report">The World Hapinnes Report</a>
+						</i>
+					</small>
+            </p>
         </div>
         <div class="row">
             <div class="col-6">
                 <div class="row">
-                    <h3>How have these factors behaved in
-                        <span id="country-name">{{ country }}</span> along time?</h3>
+                    <h4>How have these factors behaved in
+                        <span id="country-name">{{ country }}</span> along time?</h4>
                 </div>
                 <div class="row">
                     <figure class="highcharts-figure">
-                        <div id="container-3"></div>
+                        <div id="container-3">
+                            <div id="loading-info" class="d-flex justify-content-center">
+                                <div class="loading d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </figure>
                 </div>
             </div>
             <div class="col-6">
                 <div class="row">
-                    <h3>What places have
-                        <span id="country-name">{{ country }}</span> occupied along time?</h3>
+                    <h4>What places have
+                        <span id="country-name">{{ country }}</span> occupied along time?</h4>
                 </div>
                 <div class="row">
-                    <div id="container-4"></div>
+                    <div id="container-4">
+                        <div id="loading-info" class="d-flex justify-content-center">
+                            <div class="loading d-flex justify-content-center">
+                                <div class="spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -24,11 +24,21 @@ svg .highcharts-background {
     border: none !important;
 }
 
+.navbar-blue {
+    background-color: #0b486b !important;
+    color: white !important;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: 700 !important;
+}
+
 #containers {
     max-width: 90vh;
     min-width: 90vh;
-    min-height: 90vh;
-    max-height: 90vh;
+    min-height: 85vh;
+    max-height: 85vh;
     height: auto;
     margin: 0 auto;
 }
@@ -39,16 +49,41 @@ svg .highcharts-background {
     color: gray;
 }
 
+.info-year {
+    font-size: 20px;
+}
+
 #country-rank {
     display: inline-block;
-    height: 50px;
+    background-color: #0b486b;
+    padding: 2px 4px;
+    /* height: 50px;
     width: 50px;
     line-height: 50px;
     text-align: center;
     border-radius: 50%;
-    background-color: blue;
+    background-color: blue; */
     color: white;
     vertical-align: middle;
+    font-weight: 700;
+}
+
+span#country-name {
+    color: #3b8686;
+    font-weight: 700;
+}
+
+span#country-name-question {
+    padding: 2px 4px;
+    display: inline-block;
+    background-color: #a8dba8;
+    font-weight: 700;
+}
+
+span.highlight {
+    padding: 2px 4px;
+    display: inline-block;
+    background-color: #a8dba8;
     font-weight: 700;
 }
 
@@ -59,20 +94,26 @@ svg .highcharts-background {
     margin: 1em auto;
 }
 
+.bar-x,
+.bar-x text {
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
 #container-2 {
     height: 300px;
 }
 
 #container-3 {
     width: 400px;
-    height: 300px;
+    height: 280px;
     margin: 0 auto;
 }
 
 #container-4 {
     min-width: 400px;
     max-width: 400px;
-    height: 300px;
+    height: 280px;
     margin: 0 auto;
 }
 
@@ -110,4 +151,32 @@ svg .highcharts-background {
 
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
+}
+
+.btn-more {
+    background-color: #0b486b !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-more:active,
+.btn-more:focus,
+.btn-more:hover {
+    background-color: #3b8686 !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+h3,
+h4 {
+    font-weight: 700 !important;
+    padding: 4px;
+    padding-left: 0px;
+    padding-right: 8px;
 }

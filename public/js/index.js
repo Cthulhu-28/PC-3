@@ -2,20 +2,9 @@
 // https://docs.google.com/spreadsheets/d/1WBx3mRqiomXk_ks1a5sEAtJGvYukguhAkcCuRDrY1L0/pubhtml
 //https://docs.google.com/spreadsheets/d/e/2PACX-1vRQWQg_yqG55pEYrTUYPNIXc8MAz4rntH2G0W0opqy36wM1HiRWbbwzQssFPvIvlGHYPqttrJxVVslk/pubhtml?gid=0&single=true
 var data = [];
-var doubleClicker = {
-    clickedOnce: false,
-    timer: null,
-    timeBetweenClicks: 400
-};
 
-// call to reset double click timer
-var resetDoubleClick = function() {
-    clearTimeout(doubleClicker.timer);
-    doubleClicker.timer = null;
-    doubleClicker.clickedOnce = false;
-};
+let selected;
 
-// the actual callback for a double-click event
 
 
 function init() {
@@ -47,20 +36,27 @@ function init() {
                     });
                 }
             });
-
+            let colors = getColors(59, 134, 134, 6);
+            showCountry({
+                point: {
+                    name: data[1].name,
+                    rank: data[1].rank,
+                    code: data[1].code,
+                }
+            });
             // Initiate the chart
             Highcharts.mapChart('containers', {
                 chart: {
                     map: 'custom/world',
-                    borderWidth: 1
+                    borderWidth: 0
                 },
 
-                colors: ['rgba(19,64,117,0.2)', 'rgba(19,64,117,0.4)',
-                    'rgba(19,64,117,0.5)', 'rgba(19,64,117,0.6)', 'rgba(19,64,117,0.8)', 'rgba(19,64,117,1)'
+                colors: ['rgba(255,255,0,1)', 'rgba(11,72,107,1)',
+                    'rgba(59,134,134,1)', 'rgba(121,189,154,1)', 'rgba(68,219,168,1)', 'rgba(207,240,158,1)'
                 ],
 
                 title: {
-                    text: 'Hapiness global index 2019 by country'
+                    text: 'Global hapiness index 2019 by country'
                 },
 
                 mapNavigation: {
@@ -96,21 +92,27 @@ function init() {
 
                 colorAxis: {
                     dataClasses: [{
-                        to: 3
+                        to: 3,
+                        color: colors[0]
                     }, {
                         from: 3,
-                        to: 4
+                        to: 4,
+                        color: colors[1]
                     }, {
                         from: 4,
-                        to: 5
+                        to: 5,
+                        color: colors[2]
                     }, {
                         from: 5,
-                        to: 6
+                        to: 6,
+                        color: colors[3]
                     }, {
                         from: 6,
-                        to: 7
+                        to: 7,
+                        color: colors[4]
                     }, {
-                        from: 7
+                        from: 7,
+                        color: colors[5]
                     }]
                 },
 
@@ -118,18 +120,9 @@ function init() {
                     series: {
                         events: {
                             click: function(e) {
-                                if (doubleClicker.clickedOnce === true && doubleClicker.timer) {
-                                    resetDoubleClick();
-                                    ondbclick(e);
-                                } else {
-                                    doubleClicker.clickedOnce = true;
-                                    doubleClicker.timer = setTimeout(function() {
-                                        resetDoubleClick();
-                                        showCountry(e);
-                                    }, doubleClicker.timeBetweenClicks);
-                                }
+                                showCountry(e);
                             }
-                        }
+                        },
                     }
                 },
 
@@ -175,18 +168,30 @@ function ordinal(n) {
     return `${n}th`;
 }
 
-var ondbclick = function(e) {
-    let name = e.point.name;
-    let code = e.point.code;
+function getColors(r, g, b, n, reverse = false) {
+    colors = [];
+    step = 1 / n;
+    for (var i = 0; i < n; i++) {
+        colors.push(`rgba(${r},${g},${b},${(i + 1) * step})`);
+    }
+    return reverse ? colors.reverse() : colors;
+}
+
+var learnMore = function() {
+    let name = selected.point.name;
+    let code = selected.point.code;
     window.location.replace(`${window.location.href}/${name}/${code}`);
 };
 
 function showCountry(e) {
     console.log(e);
+    selected = e;
     var year = 2019;
     let name = e.point.name;
     let code = e.point.code;
     let rank = e.point.rank;
+    $('#loading-info').html('');
+    $('#panel-info').show();
     $('#country-name').html(name);
     $('#country-rank').html(ordinal(rank.toString()));
     $('#country-name-question').html(name);
@@ -211,7 +216,8 @@ function barchart(name, indicators) {
             categories: [name],
             title: {
                 text: null
-            }
+            },
+            className: "bar-x"
         },
         yAxis: {
             min: 0,
@@ -247,22 +253,28 @@ function barchart(name, indicators) {
         },
         series: [{
             name: 'GDP',
-            data: [indicators[0]]
+            data: [indicators[0]],
+            color: "#cff09e"
         }, {
             name: 'Social support',
-            data: [indicators[1]]
+            data: [indicators[1]],
+            color: "#a8dba8"
         }, {
             name: 'Life expectancy',
-            data: [indicators[2]]
+            data: [indicators[2]],
+            color: "#79bd9a"
         }, {
             name: 'Freedom',
-            data: [indicators[3]]
+            data: [indicators[3]],
+            color: "#3b8686"
         }, {
             name: 'Generosity',
-            data: [indicators[4]]
+            data: [indicators[4]],
+            color: "#0b486b"
         }, {
             name: 'Corruption',
-            data: [indicators[5]]
+            data: [indicators[5]],
+            color: "#606060"
         }]
     });
 }
